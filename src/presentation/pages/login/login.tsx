@@ -1,13 +1,8 @@
 import React from 'react'
 import Styles from './login-styles.scss'
-import Logo from '@/presentation/components/logo'
-import Input from '@/presentation/components/input'
-import InputWrap from '@/presentation/components/input-wrap'
-import Button from '@/presentation/components/button'
-import Checkbox from '@/presentation/components/checkbox'
-import Anchor from '@/presentation/components/anchor'
+import { Logo, Input, InputWrap, Button, Checkbox, Anchor } from '@/presentation/components'
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   return (
     <div className={Styles.login}>
       <section>
