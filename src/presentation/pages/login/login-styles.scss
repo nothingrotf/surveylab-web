@@ -86,24 +86,6 @@ a {
       display: flex;
       gap: $spacing-2;
       flex-direction: column;
-      
-      input {
-        line-height: 24px;
-        outline: 0px;
-        padding: $padding-input-normal;
-        border-radius: $radius-md;
-        border: 1px solid $color-border-input-normal;
-        transition: all 200ms;
-
-        &::placeholder {
-          color: $color-text-secondary;
-        }
-
-        &:hover, &:focus {
-          border-color: $color-border-input-focus;
-          box-shadow: $input-ring-light;
-        }
-      }
     }
 
     .rememberForgot {

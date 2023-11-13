@@ -1,6 +1,7 @@
 import React from 'react'
 import Styles from './login-styles.scss'
 import Logo from '@/presentation/components/logo'
+import Input from '@/presentation/components/input'
 
 const Login: React.FC = () => {
   return (
@@ -13,11 +14,11 @@ const Login: React.FC = () => {
             <h3>Login to your account</h3>
             <div className={Styles.inputWrap}>
               <label htmlFor='email'>Email</label>
-              <input type='email' name='email' placeholder='Enter your email' required/>
+              <Input type='email' name='email' placeholder='Enter your email' required/>
             </div>
             <div className={Styles.inputWrap}>
               <label htmlFor='password'>Password</label>
-              <input type='password' name='password' placeholder='••••••••'/>
+              <Input type='password' name='password' placeholder='••••••••'/>
             </div>
             <div className={Styles.rememberForgot}>
               <label htmlFor='remember-forgot'>
