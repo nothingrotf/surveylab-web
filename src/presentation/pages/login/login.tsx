@@ -1,11 +1,12 @@
 import React from 'react'
 import Styles from './login-styles.scss'
+import Logo from '@/presentation/components/logo'
 
 const Login: React.FC = () => {
   return (
     <div className={Styles.login}>
       <section>
-        <h1>Survey Lab</h1>
+        <Logo />
         <div className={Styles.container}>
           <form>
             <h2>Welcome back</h2>
