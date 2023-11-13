@@ -1,0 +1,8 @@
+@import '../../styles/spacings.scss';
+
+.inputWrap {
+  width: 100%;
+  display: flex;
+  gap: $spacing-2;
+  flex-direction: column;
+}

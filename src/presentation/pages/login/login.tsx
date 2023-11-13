@@ -2,6 +2,7 @@ import React from 'react'
 import Styles from './login-styles.scss'
 import Logo from '@/presentation/components/logo'
 import Input from '@/presentation/components/input'
+import InputWrap from '@/presentation/components/input-wrap'
 
 const Login: React.FC = () => {
   return (
@@ -12,14 +13,12 @@ const Login: React.FC = () => {
           <form>
             <h2>Welcome back</h2>
             <h3>Login to your account</h3>
-            <div className={Styles.inputWrap}>
-              <label htmlFor='email'>Email</label>
+            <InputWrap htmlFor='email' label='Email'>
               <Input type='email' name='email' placeholder='Enter your email' required/>
-            </div>
-            <div className={Styles.inputWrap}>
-              <label htmlFor='password'>Password</label>
+            </InputWrap >
+            <InputWrap htmlFor='password' label='Password'>
               <Input type='password' name='password' placeholder='••••••••'/>
-            </div>
+            </InputWrap >
             <div className={Styles.rememberForgot}>
               <label htmlFor='remember-forgot'>
                 <input type='checkbox' name='remember-forgot' id='remember-forgot' required/>
