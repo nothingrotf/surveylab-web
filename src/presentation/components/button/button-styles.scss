@@ -1,0 +1,16 @@
+@import '../../styles/styles-consts.scss';
+
+.button {
+  line-height: 24px;
+  border-radius: $radius-md;
+  padding: $padding-button-normal;
+  color: $white;
+  font-weight: 500;
+  background-color: $color-background-button-primary-normal;
+  border: 1px solid $color-border-input-normal;
+  transition: all 200ms;
+
+  &:hover {
+    background-color: $color-background-button-primary-hover;
+  }
+}

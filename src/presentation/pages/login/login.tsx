@@ -3,6 +3,7 @@ import Styles from './login-styles.scss'
 import Logo from '@/presentation/components/logo'
 import Input from '@/presentation/components/input'
 import InputWrap from '@/presentation/components/input-wrap'
+import Button from '@/presentation/components/button'
 
 const Login: React.FC = () => {
   return (
@@ -26,7 +27,7 @@ const Login: React.FC = () => {
               </label>
               <a href='#'>Forgot password?</a>
             </div>
-            <button type='submit'>Login</button>
+            <Button type='submit'>Login</Button>
           </form>
         </div>
         <p>Don&apos;t have an account? <a href='#'>Sign up</a></p>
