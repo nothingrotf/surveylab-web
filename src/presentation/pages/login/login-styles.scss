@@ -9,21 +9,6 @@
   color: $color-text-primary;
 }
 
-button {
-  line-height: 24px;
-  border-radius: $radius-md;
-  padding: $padding-button-normal;
-  color: $white;
-  font-weight: 500;
-  background-color: $color-background-button-primary-normal;
-  border: 1px solid $color-border-input-normal;
-  transition: all 200ms;
-
-  &:hover {
-    background-color: $color-background-button-primary-hover;
-  }
-}
-
 a {
   text-decoration: none;
   font-weight: 500;
@@ -81,31 +66,10 @@ a {
       margin-bottom: 24px;
     }
 
-    .inputWrap {
-      width: 100%;
-      display: flex;
-      gap: $spacing-2;
-      flex-direction: column;
-    }
-
     .rememberForgot {
       display: flex;
       width: 100%;
       justify-content: space-between;
-
-      label {
-        display: flex;
-        align-items: center;
-        gap: $spacing-3;
-        font-weight: 500;
-        vertical-align: baseline;
-
-        input {
-          height: 16px;
-          width: 16px;
-          margin: $spacing-1;
-        }
-      }
     }
 
     button {

@@ -1,0 +1,15 @@
+@import '../../styles/styles-consts.scss';
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  font-weight: 500;
+  vertical-align: baseline;
+
+  input {
+    height: 16px;
+    width: 16px;
+    margin: $spacing-1;
+  }
+}

@@ -4,6 +4,7 @@ import Logo from '@/presentation/components/logo'
 import Input from '@/presentation/components/input'
 import InputWrap from '@/presentation/components/input-wrap'
 import Button from '@/presentation/components/button'
+import Checkbox from '@/presentation/components/checkbox'
 
 const Login: React.FC = () => {
   return (
@@ -21,10 +22,7 @@ const Login: React.FC = () => {
               <Input type='password' name='password' placeholder='••••••••'/>
             </InputWrap >
             <div className={Styles.rememberForgot}>
-              <label htmlFor='remember-forgot'>
-                <input type='checkbox' name='remember-forgot' id='remember-forgot' required/>
-                Remember me
-              </label>
+              <Checkbox htmlFor='remember-forgot' name='remember-forgot' id='remember-forgot'>Remember me</Checkbox>
               <a href='#'>Forgot password?</a>
             </div>
             <Button type='submit'>Login</Button>
