@@ -1,0 +1,12 @@
+@import '../../styles/components-colors.scss';
+
+.anchor {
+  text-decoration: none;
+  font-weight: 500;
+  color: $color-anchor-normal;
+  transition: color 200ms;
+
+  &:hover {
+    color: $color-anchor-hover;
+  }
+}

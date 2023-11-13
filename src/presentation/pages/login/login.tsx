@@ -5,6 +5,7 @@ import Input from '@/presentation/components/input'
 import InputWrap from '@/presentation/components/input-wrap'
 import Button from '@/presentation/components/button'
 import Checkbox from '@/presentation/components/checkbox'
+import Anchor from '@/presentation/components/anchor'
 
 const Login: React.FC = () => {
   return (
@@ -23,12 +24,12 @@ const Login: React.FC = () => {
             </InputWrap >
             <div className={Styles.rememberForgot}>
               <Checkbox htmlFor='remember-forgot' name='remember-forgot' id='remember-forgot'>Remember me</Checkbox>
-              <a href='#'>Forgot password?</a>
+              <Anchor href='#'>Forgot password?</Anchor>
             </div>
             <Button type='submit'>Login</Button>
           </form>
         </div>
-        <p>Don&apos;t have an account? <a href='#'>Sign up</a></p>
+        <p>Don&apos;t have an account? <Anchor href='#'>Sign up</Anchor></p>
       </section>
       <section className={Styles.image}></section>
     </div>
