@@ -1,6 +1,6 @@
 import React from 'react'
 import Styles from './login-styles.scss'
-import { Logo, InputWrap, Button, Checkbox, Anchor, LoginHeader } from '@/presentation/components'
+import { Logo, InputWrap, Button, Checkbox, Anchor, LoginHeader, FormStatus } from '@/presentation/components'
 
 export const Login: React.FC = () => {
   return (
@@ -17,6 +17,7 @@ export const Login: React.FC = () => {
               <Anchor href='#'>Forgot password?</Anchor>
             </div>
             <Button type='submit'>Login</Button>
+            <FormStatus />
           </form>
         </div>
         <p>Don&apos;t have an account? <Anchor href='#'>Sign up</Anchor></p>

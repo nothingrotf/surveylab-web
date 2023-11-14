@@ -1,0 +1,13 @@
+@import  '../../styles/styles-consts.scss';
+
+.errorWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .error {
+    margin-top: 12px;
+    color: $color-text-destructive;
+    font-weight: 700;
+  }
+}
