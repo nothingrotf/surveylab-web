@@ -5,6 +5,6 @@ type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export const Button: React.FC<Props> = (props: Props) => {
   return (
-    <button className={Styles.button}>{props.children}</button>
+    <button { ...props } className={Styles.button}>{props.children}</button>
   )
 }
