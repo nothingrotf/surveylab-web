@@ -1,6 +1,6 @@
 import React from 'react'
 import Styles from './login-styles.scss'
-import { Logo, Input, InputWrap, Button, Checkbox, Anchor } from '@/presentation/components'
+import { Logo, InputWrap, Button, Checkbox, Anchor } from '@/presentation/components'
 
 export const Login: React.FC = () => {
   return (
@@ -11,12 +11,8 @@ export const Login: React.FC = () => {
           <form>
             <h2>Welcome back</h2>
             <h3>Login to your account</h3>
-            <InputWrap htmlFor='email' label='Email'>
-              <Input type='email' name='email' placeholder='Enter your email' required/>
-            </InputWrap >
-            <InputWrap htmlFor='password' label='Password'>
-              <Input type='password' name='password' placeholder='••••••••'/>
-            </InputWrap >
+            <InputWrap type='email' name='email' placeholder='Enter your email' required label='Email' />
+            <InputWrap type='password' name='password' placeholder='••••••••' label='Password' />
             <div className={Styles.rememberForgot}>
               <Checkbox htmlFor='remember-forgot' name='remember-forgot' id='remember-forgot'>Remember me</Checkbox>
               <Anchor href='#'>Forgot password?</Anchor>
