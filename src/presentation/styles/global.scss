@@ -1,0 +1,14 @@
+@import './styles-consts.scss';
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  padding: 0px; 
+  margin: 0px;
+  box-sizing: border-box;
+  color: $color-text-primary;
+}
+
+body {
+  background-color: $background;
+}
