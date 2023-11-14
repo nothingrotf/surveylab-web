@@ -13,4 +13,8 @@
   &:hover {
     background-color: $color-background-button-primary-hover;
   }
+
+  &:disabled {
+    background-color: $color-background-button-primary-disabled;
+  }
 }
