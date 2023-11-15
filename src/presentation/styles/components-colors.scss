@@ -5,12 +5,17 @@ $color-border-default: #D1D1DB;
 $color-text-primary: $black;
 $color-text-secondary: #6C6C89;
 $color-text-destructive: #F53D6B;
+$color-text-disabled: #A9A9BC;
 
 $color-anchor-normal: $primary;
 $color-anchor-hover: $primary-dark;
 
 $color-border-input-normal: $color-border-default;
 $color-border-input-focus: $primary;
+$color-border-input-disabled: $color-border-default;
+
+$color-background-input-disabled: $disabled;
+
 $input-ring-light: 0px 0px 0px 1px $primary;
 
 $color-background-button-primary-normal: $primary;

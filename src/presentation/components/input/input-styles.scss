@@ -16,4 +16,14 @@
     border-color: $color-border-input-focus;
     box-shadow: $input-ring-light;
   }
+
+  &:disabled {
+    border-color: $color-border-input-disabled;
+    background: $color-background-input-disabled;
+    color: $color-text-disabled;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
