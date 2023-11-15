@@ -18,7 +18,7 @@ export const InputWrap: React.FC<Props> = (props: Props) => {
     <div data-testid={`${inputProps.name}-status`} className={ Styles.inputWrap }>
       <label htmlFor={ inputProps.name }>{ label }</label>
       <Input { ...inputProps } />
-      { error && <span className={ Styles.error } title={getTitle()}>{getTitle()}</span> }
+      { error && <span data-testid={`${inputProps.name}-error`} className={ Styles.error } title={getTitle()}>{getTitle()}</span> }
     </div>
   )
 }
