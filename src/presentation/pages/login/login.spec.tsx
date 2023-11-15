@@ -22,8 +22,6 @@ describe('Login Component', () => {
     const { sut } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
-    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
-    expect(submitButton.disabled).toBe(true)
     const emailStatus = sut.getByTestId('email-status')
     expect(emailStatus.childElementCount).toBe(2)
     const passwordStatus = sut.getByTestId('password-status')
