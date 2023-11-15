@@ -9,8 +9,13 @@ type SutTypes = {
   validationStub: ValidationStub
 }
 
-const makeSut = (): SutTypes => {
+type SutProps = {
+  validationError: string
+}
+
+const makeSut = (props?: SutProps): SutTypes => {
   const validationStub = new ValidationStub()
+  validationStub.errorMessage = props?.validationError
   const sut = render(<Login validation={validationStub} />)
   return { sut, validationStub }
 }
@@ -22,30 +27,28 @@ describe('Login Component', () => {
     const { sut } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
-    const emailStatus = sut.getByTestId('email-status')
-    expect(emailStatus.childElementCount).toBe(2)
-    const passwordStatus = sut.getByTestId('password-status')
-    expect(passwordStatus.childElementCount).toBe(2)
+    const emailError = sut.queryByTestId('email-error')
+    expect(emailError).toBeNull()
+    const passwordError = sut.queryByTestId('password-error')
+    expect(passwordError).toBeNull()
   })
 
   test('Should show email error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    const errorMessage = faker.word.words()
-    validationStub.errorMessage = errorMessage
+    const validationError = faker.word.words()
+    const { sut } = makeSut({ validationError })
     const emailInput = sut.getByTestId('email')
     fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
     const emailStatus = sut.getByTestId('email-error')
-    expect(emailStatus.title).toBe(errorMessage)
+    expect(emailStatus.title).toBe(validationError)
   })
 
   test('Should show password error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    const errorMessage = faker.word.words()
-    validationStub.errorMessage = errorMessage
+    const validationError = faker.word.words()
+    const { sut } = makeSut({ validationError })
     const passwordInput = sut.getByTestId('password')
     fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
     const passwordStatus = sut.getByTestId('password-error')
-    expect(passwordStatus.title).toBe(errorMessage)
+    expect(passwordStatus.title).toBe(validationError)
   })
 
   test('Should show valid email state if Validation succeeds', () => {
