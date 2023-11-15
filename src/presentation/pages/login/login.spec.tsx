@@ -9,5 +9,9 @@ describe('Login Component', () => {
     expect(errorWrap.childElementCount).toBe(0)
     const submitButton = getByTestId('submit') as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
+    const emailStatus = getByTestId('email-status')
+    expect(emailStatus.childElementCount).toBe(2)
+    const passwordStatus = getByTestId('password-status')
+    expect(passwordStatus.childElementCount).toBe(2)
   })
 })
