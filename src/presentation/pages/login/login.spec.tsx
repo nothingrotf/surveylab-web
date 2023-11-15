@@ -48,4 +48,14 @@ describe('Login Component', () => {
       email: 'any_email'
     })
   })
+
+  test('Should call Validation with correct password', () => {
+    const { sut, validationStub } = makeSut()
+    const passwordInput = sut.getByTestId('password')
+    const validateSpy = jest.spyOn(validationStub, 'validate')
+    fireEvent.input(passwordInput, { target: { value: 'any_password' } })
+    expect(validateSpy).toHaveBeenCalledWith({
+      password: 'any_password'
+    })
+  })
 })
