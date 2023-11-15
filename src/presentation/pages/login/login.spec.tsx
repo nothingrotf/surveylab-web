@@ -57,4 +57,12 @@ describe('Login Component', () => {
     const emailError = sut.queryByTestId('email-error')
     expect(emailError).toBeNull()
   })
+
+  test('Should show valid password state if Validation succeeds', () => {
+    const { sut } = makeSut()
+    const passwordInput = sut.getByTestId('password')
+    fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
+    const passwordError = sut.queryByTestId('password-error')
+    expect(passwordError).toBeNull()
+  })
 })
