@@ -3,25 +3,27 @@ import { type RenderResult, render, fireEvent, cleanup } from '@testing-library/
 import Login from './login'
 import type { Validation } from '@/presentation/protocols/validation'
 
-const mockValidation = (): Validation => {
-  class ValidationStub implements Validation {
-    errorMessage: string
-    validate (input: object): string {
-      return this.errorMessage
-    }
+class ValidationSpy implements Validation {
+  fieldName: string
+  fieldValue: string
+  errorMessage: string
+
+  validate (fieldName: string, fieldValue: string): string {
+    this.fieldName = fieldName
+    this.fieldValue = fieldValue
+    return this.errorMessage
   }
-  return new ValidationStub()
 }
 
 type SutTypes = {
   sut: RenderResult
-  validationStub: Validation
+  validationSpy: ValidationSpy
 }
 
 const makeSut = (): SutTypes => {
-  const validationStub = mockValidation()
-  const sut = render(<Login validation={validationStub} />)
-  return { sut, validationStub }
+  const validationSpy = new ValidationSpy()
+  const sut = render(<Login validation={validationSpy} />)
+  return { sut, validationSpy }
 }
 
 describe('Login Component', () => {
@@ -40,22 +42,18 @@ describe('Login Component', () => {
   })
 
   test('Should call Validation with correct email', () => {
-    const { sut, validationStub } = makeSut()
+    const { sut, validationSpy } = makeSut()
     const emailInput = sut.getByTestId('email')
-    const validateSpy = jest.spyOn(validationStub, 'validate')
     fireEvent.input(emailInput, { target: { value: 'any_email' } })
-    expect(validateSpy).toHaveBeenCalledWith({
-      email: 'any_email'
-    })
+    expect(validationSpy.fieldName).toBe('email')
+    expect(validationSpy.fieldValue).toBe('any_email')
   })
 
   test('Should call Validation with correct password', () => {
-    const { sut, validationStub } = makeSut()
+    const { sut, validationSpy } = makeSut()
     const passwordInput = sut.getByTestId('password')
-    const validateSpy = jest.spyOn(validationStub, 'validate')
     fireEvent.input(passwordInput, { target: { value: 'any_password' } })
-    expect(validateSpy).toHaveBeenCalledWith({
-      password: 'any_password'
-    })
+    expect(validationSpy.fieldName).toBe('password')
+    expect(validationSpy.fieldValue).toBe('any_password')
   })
 })
