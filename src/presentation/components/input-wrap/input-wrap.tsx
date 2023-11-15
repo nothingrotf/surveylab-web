@@ -9,8 +9,8 @@ type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>
 
 export const InputWrap: React.FC<Props> = (props: Props) => {
   const { label, ...inputProps } = props
-  const { errorState } = useContext(Context)
-  const error = errorState[inputProps.name]
+  const { state } = useContext(Context)
+  const error = state[`${inputProps.name}Error`]
   const getTitle = (): string => {
     return error
   }
