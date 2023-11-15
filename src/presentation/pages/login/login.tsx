@@ -12,6 +12,7 @@ type StateProps = {
   isLoading: boolean
   email: string
   emailError: string
+  password: string
   passwordError: string
   mainError: string
 }
@@ -21,12 +22,16 @@ export const Login: React.FC<Props> = ({ validation }: Props) => {
     isLoading: false,
     email: '',
     emailError: '',
+    password: '',
     passwordError: '',
     mainError: ''
   })
   useEffect(() => {
     validation.validate({ email: state.email })
   }, [state.email])
+  useEffect(() => {
+    validation.validate({ password: state.password })
+  }, [state.password])
   return (
     <div className={Styles.login}>
       <section>
