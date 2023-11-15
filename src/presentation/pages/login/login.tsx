@@ -4,19 +4,30 @@ import { Logo, InputWrap, Button, Checkbox, Anchor, LoginHeader, FormStatus } fr
 import Context from '@/presentation/contexts/forms/form-context'
 
 type StateProps = {
-  errorMessage: string
+  isLoading: boolean
+}
+
+type ErrorStateProps = {
+  email: string
+  password: string
+  main: string
 }
 
 export const Login: React.FC = () => {
   const [state] = useState<StateProps>({
-    errorMessage: ''
+    isLoading: false
+  })
+  const [errorState] = useState<ErrorStateProps>({
+    email: '',
+    password: '',
+    main: ''
   })
   return (
     <div className={Styles.login}>
       <section>
         <Logo />
         <div className={Styles.container}>
-          <Context.Provider value={state}>
+          <Context.Provider value={{ state, errorState }}>
             <form>
               <LoginHeader />
               <InputWrap type='email' name='email' placeholder='Enter your email' required label='Email' />

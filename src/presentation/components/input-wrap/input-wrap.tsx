@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Styles from './input-wrap-styles.scss'
 import { Input } from '../input/input'
+import Context from '@/presentation/contexts/forms/form-context'
 
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   label: string
@@ -8,10 +9,16 @@ type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>
 
 export const InputWrap: React.FC<Props> = (props: Props) => {
   const { label, ...inputProps } = props
+  const { errorState } = useContext(Context)
+  const error = errorState[inputProps.name]
+  const getTitle = (): string => {
+    return error
+  }
   return (
-    <div className={ Styles.inputWrap }>
+    <div data-testid={`${inputProps.name}-status`} className={ Styles.inputWrap }>
       <label htmlFor={ inputProps.name }>{ label }</label>
       <Input { ...inputProps } />
+      { error && <span className={ Styles.error } title={getTitle()}>{getTitle()}</span> }
     </div>
   )
 }
