@@ -33,21 +33,25 @@ export const Login: React.FC<Props> = ({ validation }: Props) => {
       passwordError: validation.validate('password', state.password)
     })
   }, [state.email, state.password])
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    setState({ ...state, isLoading: true })
+  }
   return (
     <div className={Styles.login}>
       <section>
         <Logo />
         <div className={Styles.container}>
           <Context.Provider value={{ state, setState }}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <LoginHeader />
-              <InputWrap type='email' name='email' placeholder='Enter your email' required label='Email' />
-              <InputWrap type='password' name='password' placeholder='••••••••' label='Password' />
+              <InputWrap type='email' name='email' placeholder='Enter your email' required label='Email' disabled={state.isLoading} />
+              <InputWrap type='password' name='password' placeholder='••••••••' label='Password' disabled={state.isLoading} />
               <div className={Styles.rememberForgot}>
                 <Checkbox htmlFor='remember-forgot' name='remember-forgot' id='remember-forgot'>Remember me</Checkbox>
                 <Anchor href='#'>Forgot password?</Anchor>
               </div>
-              <Button data-testid='submit' type='submit'>Login</Button>
+              <Button data-testid='submit' type='submit' disabled={state.isLoading}>Login</Button>
               <FormStatus />
             </form>
           </Context.Provider>
