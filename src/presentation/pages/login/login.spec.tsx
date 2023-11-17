@@ -66,4 +66,17 @@ describe('Login Component', () => {
     const passwordError = sut.queryByTestId('password-error')
     expect(passwordError).toBeNull()
   })
+
+  test('Should disable inputs and buttons on submit', async () => {
+    const { sut } = makeSut()
+    const emailInput = sut.getByTestId('email') as HTMLInputElement
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    const passwordInput = sut.getByTestId('password') as HTMLInputElement
+    fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    fireEvent.click(submitButton)
+    expect(submitButton.disabled).toBe(true)
+    expect(emailInput.disabled).toBe(true)
+    expect(passwordInput.disabled).toBe(true)
+  })
 })
