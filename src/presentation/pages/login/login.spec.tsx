@@ -61,6 +61,10 @@ const simulateStatusForField = (sut: RenderResult, fieldName: string, status: st
 describe('Login Component', () => {
   afterEach(cleanup)
 
+  beforeEach(() => {
+    localStorage.clear()
+  })
+
   test('Should start wih initial state', () => {
     const { sut } = makeSut()
     isFieldNull(sut, 'error-main')
@@ -132,9 +136,15 @@ describe('Login Component', () => {
     const error = new InvalidCredentialsError()
     jest.spyOn(authenticationSpy, 'auth').mockReturnValueOnce(Promise.reject(error))
     mockValidSubmit(sut)
-    const errorWrap = sut.getByTestId('error-wrap')
-    await waitFor(() => errorWrap)
+    await waitFor(() => sut.getByTestId('error-wrap'))
     const mainError = sut.getByTestId('error-main')
     expect(mainError.textContent).toBe(error.message)
+  })
+
+  test('Should add accessToken to localstorage on success', async () => {
+    const { sut, authenticationSpy } = makeSut()
+    mockValidSubmit(sut)
+    await waitFor(() => sut.getByTestId('form'))
+    expect(localStorage.getItem('accessToken')).toBe(authenticationSpy.account.accessToken)
   })
 })
