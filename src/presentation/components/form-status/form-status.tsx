@@ -6,8 +6,8 @@ export const FormStatus: React.FC = () => {
   const { state } = useContext(Context)
   const { mainError } = state
   return (
-    <div data-testid='error-wrap' className={Styles.errorWrap}>
-      { mainError && <span className={Styles.error}>{mainError}</span> }
+    <div className={Styles.errorWrap}>
+      { mainError && <span data-testid='error-main' className={Styles.error}>{mainError}</span> }
     </div>
   )
 }
