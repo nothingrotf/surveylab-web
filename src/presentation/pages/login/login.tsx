@@ -3,9 +3,11 @@ import Styles from './login-styles.scss'
 import { Logo, InputWrap, Button, Checkbox, Anchor, LoginHeader, FormStatus } from '@/presentation/components'
 import Context from '@/presentation/contexts/forms/form-context'
 import type { Validation } from '@/presentation/protocols/validation'
+import type { Authentication } from '@/domain/usecases'
 
 type Props = {
   validation: Validation
+  authentication: Authentication
 }
 
 type StateProps = {
@@ -17,7 +19,7 @@ type StateProps = {
   mainError: string
 }
 
-export const Login: React.FC<Props> = ({ validation }: Props) => {
+export const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const [state, setState] = useState<StateProps>({
     isLoading: false,
     email: '',
@@ -33,9 +35,13 @@ export const Login: React.FC<Props> = ({ validation }: Props) => {
       passwordError: validation.validate('password', state.password)
     })
   }, [state.email, state.password])
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     setState({ ...state, isLoading: true })
+    await authentication.auth({
+      email: state.email,
+      password: state.password
+    })
   }
   return (
     <div className={Styles.login}>
