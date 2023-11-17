@@ -110,4 +110,11 @@ describe('Login Component', () => {
     mockValidSubmit(sut, mockAccount.email, mockAccount.password)
     expect(authenticationSpy.params).toEqual(mockAccount)
   })
+
+  test('Should call Authentication only once', async () => {
+    const { sut, authenticationSpy } = makeSut()
+    mockValidSubmit(sut)
+    mockValidSubmit(sut)
+    expect(authenticationSpy.callsCount).toBe(1)
+  })
 })
