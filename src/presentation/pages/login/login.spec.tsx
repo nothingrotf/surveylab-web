@@ -6,7 +6,7 @@ import { faker } from '@faker-js/faker'
 import { InvalidCredentialsError } from '@/domain/errors'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-const history = createMemoryHistory()
+const history = createMemoryHistory({ initialEntries: ['/login'] })
 
 type SutTypes = {
   sut: RenderResult
@@ -153,6 +153,8 @@ describe('Login Component', () => {
     mockValidSubmit(sut)
     await waitFor(() => sut.getByTestId('form'))
     expect(localStorage.getItem('accessToken')).toBe(authenticationSpy.account.accessToken)
+    expect(history.index).toBe(0)
+    expect(history.location.pathname).toBe('/')
   })
 
   test('Should go to signup page', async () => {
