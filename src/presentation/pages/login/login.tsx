@@ -67,14 +67,14 @@ export const Login: React.FC<Props> = ({ validation, authentication }: Props) =>
               <InputWrap type='password' name='password' placeholder='••••••••' label='Password' disabled={state.isLoading} />
               <div className={Styles.rememberForgot}>
                 <Checkbox htmlFor='remember-forgot' name='remember-forgot' id='remember-forgot'>Remember me</Checkbox>
-                <Anchor href='#'>Forgot password?</Anchor>
+                <Anchor to='#'>Forgot password?</Anchor>
               </div>
               <Button data-testid='submit' type='submit' disabled={state.isLoading}>Login</Button>
               <FormStatus />
             </form>
           </Context.Provider>
         </div>
-        <p>Don&apos;t have an account? <Anchor href='#'>Sign up</Anchor></p>
+        <p>Don&apos;t have an account? <Anchor data-testid='signup' to='/signup'>Sign up</Anchor></p>
       </section>
       <section className={Styles.image}></section>
     </div>
