@@ -4,6 +4,9 @@ import { type RenderResult, render, fireEvent, cleanup, waitFor } from '@testing
 import { AuthenticationSpy, ValidationStub } from '@/presentation/test'
 import { faker } from '@faker-js/faker'
 import { InvalidCredentialsError } from '@/domain/errors'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
+const history = createMemoryHistory()
 
 type SutTypes = {
   sut: RenderResult
@@ -18,7 +21,11 @@ const makeSut = (props?: SutProps): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
   validationStub.errorMessage = props?.validationError
-  const sut = render(<Login validation={validationStub} authentication={authenticationSpy} />)
+  const sut = render(
+    <Router location={history.location} navigator={history}>
+      <Login validation={validationStub} authentication={authenticationSpy} />
+    </Router>
+  )
   return { sut, authenticationSpy }
 }
 
@@ -146,5 +153,14 @@ describe('Login Component', () => {
     mockValidSubmit(sut)
     await waitFor(() => sut.getByTestId('form'))
     expect(localStorage.getItem('accessToken')).toBe(authenticationSpy.account.accessToken)
+  })
+
+  test('Should go to signup page', async () => {
+    const { sut } = makeSut()
+    expect(history.index).toBe(0)
+    const signupButton = sut.getByTestId('signup')
+    fireEvent.click(signupButton)
+    expect(history.index).toBe(1)
+    expect(history.location.pathname).toBe('/signup')
   })
 })
