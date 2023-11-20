@@ -4,6 +4,7 @@ import { Logo, InputWrap, Button, Checkbox, Anchor, LoginHeader, FormStatus } fr
 import Context from '@/presentation/contexts/forms/form-context'
 import type { Validation } from '@/presentation/protocols/validation'
 import type { Authentication } from '@/domain/usecases'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   validation: Validation
@@ -20,6 +21,7 @@ type StateProps = {
 }
 
 export const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+  const navigate = useNavigate()
   const [state, setState] = useState<StateProps>({
     isLoading: false,
     email: '',
@@ -36,10 +38,10 @@ export const Login: React.FC<Props> = ({ validation, authentication }: Props) =>
     })
   }, [state.email, state.password])
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault()
     if (state.isLoading || state.emailError || state.passwordError) {
       return
     }
-    event.preventDefault()
     setState({ ...state, isLoading: true })
     try {
       const account = await authentication.auth({
@@ -47,6 +49,7 @@ export const Login: React.FC<Props> = ({ validation, authentication }: Props) =>
         password: state.password
       })
       localStorage.setItem('accessToken', account.accessToken)
+      navigate('/', { replace: true })
     } catch (error) {
       setState({
         ...state,
